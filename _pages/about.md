@@ -7,4 +7,17 @@ redirect_from:
   - /about.html
 ---
 
-Hi, hello.
+# About Me
+
+Hello! My name is Aden. With a passion for technology and a keen interest in systems administration, I am on a journey to bigger and greater things. This website is a chronicle of my learning experiences, projects, and insights as I delve deeper into the world of systems administration and DevOps.
+
+## What's Here?
+
+On this website, you will find:
+
+- **Learning Logs**: Regular updates on what I am studying, including key concepts, tools, and technologies.
+- **Projects**: Detailed descriptions and code snippets from personal projects that showcase my growing experience in the wonderful world of Linux and managing a lab.
+- **Resources**: A curated list of books, courses, and articles that have been instrumental in my learning journey.
+- **Blog**: Articles and tutorials on various topics related to systems administration and DevOps, aimed at sharing knowledge and helping others who are on a similar path.
+
+Join me as I share my experience and knowledge as I explore the wonderful world of DevOps! 🤗
