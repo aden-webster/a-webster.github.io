@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Aden Webster"
+title                    : "Aden W."
 title_separator          : "-"
 name                     : &name "Aden"
 description              : &description "Nerd, hacker, lover of cats and trees"
@@ -24,7 +24,7 @@ author:
   avatar           : "profile.png"
   name             : "Aden"
   pronouns         : "He/Him"  
-  bio              : "IT Nerd, hacker, lover of cats"
+  bio              : "IT Nerd, hacker, lover of cats."
   location         : "Reno"
   employer         : "No-IP"
   uri              : # URL
