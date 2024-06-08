@@ -9,7 +9,7 @@ author_profile: true
 
 ## Introduction
 
-Welcome to my first blog post! 
+Welcome to my first post! 
 
 As part of my journey into systems administration and DevOps, I have set up a small network/data center at home. This setup serves as a practical learning environment where I can experiment with various technologies and concepts. In this post, I will walk through the components of my home network and explain how they are interconnected. I have also created a diagram using Draw.IO to visually represent the setup.
 
