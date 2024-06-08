@@ -1,11 +1,67 @@
 ---
-title: "Talk 1 on Relevant Topic in Your Field"
+title: "SaltStack, on how I learned to love automation"
 collection: talks
-type: "Talk"
-permalink: /talks/2012-03-01-talk-1
-venue: "UC San Francisco, Department of Testing"
-date: 2012-03-01
-location: "San Francisco, California"
+type: "Salt States"
+permalink: /talks/2024-06-02-Salt_States
+date: 2024-06-02
 ---
 
-This is a description of your talk, which is a markdown files that can be all markdown-ified like any other post. Yay markdown!
+# Exploring SaltStack
+
+I am a big advocate of [SaltStack](https://saltproject.io/index.html). I first started using it a couple of years ago when I was introduced to it at No-IP. After learning how it was worked, I deployed it across my entire home network and have used it on everything ever since. 
+
+SaltStack is a powerful configuration management and orchestration tool that I have grown to appreciate for its flexibility and efficiency. It allows you to automate the deployment and management of infrastructure, ensuring consistency and reducing manual effort.
+
+I've published a few Salt States on my GitHub.
+
+[LibreNMS](https://github.com/aden-webster/librenms)
+
+[Prometheus & Node Exporter](https://github.com/aden-webster/prometheus)
+
+[Wazuh Agent](https://github.com/aden-webster/wazuh_agent)
+
+## Why, though?
+
+I am particularly fond of SaltStack because of its ease of use and scalability. Its declarative language, YAML, makes writing configuration states straightforward and readable.
+
+Additionally, SaltStack's event-driven architecture and support for both push and pull models provide the flexibility needed to manage complex environments effectively. It being written in Python makes it very easily extensible, with [tons](https://github.com/vmware-archive/salt-contrib) of Salt Modules existing for third party applications available on GitHub. 
+
+## How It Works
+
+SaltStack operates using a master-minion architecture. The master server sends commands to the minion agents installed on each managed system (VM's, containers, hardware etc.). 
+
+You can use the command line `salt '*' cmd.run 'ls -l /etc'` which will run `ls -l /etc` on all of the Salt Minions.
+
+But Salt really shines when you start creating files called Salt States which are YAML files but with file extension `sls`. They describe the desired configuration of the systems. The minions execute these states, ensuring that the systems are configured as defined in the `.sls` file. This setup allows for efficient, scalable management of numerous systems.
+
+See this example:
+
+``` yaml
+install_tree_now: <--- ID: (Identifier)
+  pkg.installed:  <--- State: Name of the module containing the function (like `pkg`) & the name of the Function (Like `installed`)
+    - pkgs:       <--- Modifier: 
+        - tree    <--- Name: is the name of the state call, which is usually the name of the file to be managed or the name of the package to be installed.
+```
+
+This Salt Module will check if `tree` is installed on the system. If it isn't, it will install it. If it's already installed, it will move on, and do nothing.
+
+You could also simplify this salt state by doing the following:
+
+If you set the ID to match the name of the package you want to install (or command you want to run, or file you want to create...), you can omit the -name option because it will be automatically derived from the ID. For instance, this snippet installs NGINX:
+
+
+``` bash
+## install_tree.sls
+tree:
+  pkg.installed
+```
+
+I really like this compared to Ansible or Puppet because Salt simply ensures the state of the system *matches* the Salt State. It will not undo current configurations if you apply a configuration twice.
+
+### Use your new Salt State
+
+To use your new Salt State, you would run the following: `salt my-nas state.apply install_tree` 
+
+With *my-nas* being the name of the Salt Minion you want to use, and *state.apply* being the Salt function that... applys states :)
+
+Notice the file extension is dropped. Salt interprets the file reading only the filename. 
