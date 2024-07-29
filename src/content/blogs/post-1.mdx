@@ -1,11 +1,11 @@
 ---
-title: "The Future of Artificial Intelligence in Business"
+title: "On SaltStack"
 author: 
-  name: "Eclipse"
+  name: "Aden"
   img: "/avatar.jpg"
   alt: "Avatar image"
-date: "2024-07-10"
-description: "Exploring the impact of AI on business operations and strategy."
+date: "2024-07-26"
+description: "Quick overview of Saltstack"
 image:
   src: "/blog-1.jpg"
   alt: "AI Blog Image"
@@ -15,35 +15,67 @@ import MarkdownAuthor from "../../components/MarkdownAuthor.astro";
 import MarkdownImages from "../../components/MarkdownImages.astro";
 export const {author, date, image} = frontmatter
 
-# The Future of Artificial Intelligence in Business
+# Exploring Saltstack at work and home.
 
 <MarkdownAuthor img={author.img} author={author.name} date={date} />
 
 <MarkdownImages src={image.src} alt={image.alt} />
 
-Artificial Intelligence (AI) is revolutionizing how businesses operate, offering unprecedented opportunities for efficiency and innovation. In this article, we explore the transformative impact of AI technologies across various industries.
 
-## Introduction
+I am a big advocate of [SaltStack](https://saltproject.io/index.html). I first started using it a couple of years ago when I was introduced to it at No-IP. After learning how it was worked, I deployed it across my entire home network and have used it on everything ever since. 
 
-AI technologies such as machine learning and natural language processing are reshaping traditional business models, enabling companies to automate processes, enhance decision-making, and deliver personalized customer experiences.
+SaltStack is a powerful configuration management and orchestration tool that I have grown to appreciate for its flexibility and efficiency. It allows you to automate the deployment and management of infrastructure, ensuring consistency and reducing manual effort.
 
-## Key Insights
+I've published a few Salt States on my GitHub.
 
-- **Operational Efficiency**: AI-powered automation streamlines repetitive tasks and operational workflows, reducing costs and improving productivity.
-  
-- **Predictive Analytics**: Advanced AI algorithms analyze vast amounts of data to forecast trends, optimize inventory management, and anticipate customer preferences.
+[LibreNMS](https://github.com/aden-webster/librenms)
 
-- **Customer Experience**: AI-driven chatbots and virtual assistants provide instant customer support, enhancing satisfaction and retention rates.
+[Prometheus & Node Exporter](https://github.com/aden-webster/prometheus)
 
-## Challenges and Considerations
+[Wazuh Agent](https://github.com/aden-webster/wazuh_agent)
 
-Implementing AI solutions requires addressing ethical concerns, data privacy regulations, and workforce readiness for AI adoption. However, the potential benefits far outweigh these challenges, positioning AI as a cornerstone of future business strategies.
+## Why, though?
 
-## Conclusion
+I am particularly fond of SaltStack because of its ease of use and scalability. Its declarative language, YAML, makes writing configuration states straightforward and readable.
 
-As businesses embrace AI technologies, they unlock new possibilities for growth and competitive advantage. Understanding AI's capabilities and integrating them strategically will be crucial in navigating the evolving landscape of business innovation.
+Additionally, SaltStack's event-driven architecture and support for both push and pull models provide the flexibility needed to manage complex environments effectively. It being written in Python makes it very easily extensible, with [tons](https://github.com/vmware-archive/salt-contrib) of Salt Modules existing for third party applications available on GitHub. 
 
-## Further Reading
+## How It Works
 
-Explore more about AI technologies and their impact on business in our comprehensive [AI resource center](https://yourcompany.com/ai-resources).
+SaltStack operates using a master-minion architecture. The master server sends commands to the minion agents installed on each managed system (VM's, containers, hardware etc.). 
 
+You can use the command line `salt '*' cmd.run 'ls -l /etc'` which will run `ls -l /etc` on all of the Salt Minions.
+
+But Salt really shines when you start creating files called Salt States which are YAML files but with file extension `sls`. They describe the desired configuration of the systems. The minions execute these states, ensuring that the systems are configured as defined in the `.sls` file. This setup allows for efficient, scalable management of numerous systems.
+
+See this example:
+
+``` yaml
+install_tree_now: <--- ID: (Identifier)
+  pkg.installed:  <--- State: Name of the module containing the function (like `pkg`) & the name of the Function (Like `installed`)
+    - pkgs:       <--- Modifier: 
+        - tree    <--- Name: is the name of the state call, which is usually the name of the file to be managed or the name of the package to be installed.
+```
+
+This Salt Module will check if `tree` is installed on the system. If it isn't, it will install it. If it's already installed, it will move on, and do nothing.
+
+You could also simplify this salt state by doing the following:
+
+If you set the ID to match the name of the package you want to install (or command you want to run, or file you want to create...), you can omit the -name option because it will be automatically derived from the ID. For instance, this snippet installs NGINX:
+
+
+``` bash
+## install_tree.sls
+tree:
+  pkg.installed
+```
+
+I really like this compared to Ansible or Puppet because Salt simply ensures the state of the system *matches* the Salt State. It will not undo current configurations if you apply a configuration twice.
+
+### Use your new Salt State
+
+To use your new Salt State, you would run the following: `salt my-nas state.apply install_tree` 
+
+With *my-nas* being the name of the Salt Minion you want to use, and *state.apply* being the Salt function that... applys states :)
+
+Notice the file extension is dropped. Salt interprets the file reading only the filename. 

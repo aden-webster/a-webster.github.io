@@ -1,79 +1,71 @@
 ---
-title: "Awesome Project"
+title: "My Homelab"
 author: 
-    name: "Eclipse"
+    name: "Aden W."
     img: "/avatar.jpg"
     alt: "Avatar image"
-date: "2024-07-10"
-description: "An awesome project showcasing my skills."
+date: "2024-07-25"
+description: "Showcasing my home network hardware and services."
 image:
   src: "/post-1.jpg"
-  alt: "Screenshot of the Awesome Project UI displaying advanced frontend and backend functionalities."
+  alt: "My home server rack"
 ---
 
 import MarkdownAuthor from "../../components/MarkdownAuthor.astro";
 import MarkdownImages from "../../components/MarkdownImages.astro";
 export const {author, date, image} = frontmatter
 
-# Awesome Project
+# My Home Network/Data Center Setup
 
 <MarkdownAuthor img={author.img} author={author.name} date={date} />
 
-Welcome to the documentation for my awesome project. This project is designed to address specific challenges and demonstrate my capabilities in web development.
+Welcome to my first project and pride and joy, an overview of my homelab and data center setup. 
 
 <MarkdownImages src={image.src} alt={image.alt} />
 
-## Objectives
+## Introduction
 
-- **Showcase Proficiency**: Demonstrate advanced skills in frontend and backend development.
-- **Solve a Real-World Problem**: Address a specific challenge or improve efficiency in a particular domain.
-- **Learn and Implement**: Experiment with new technologies and methodologies to enhance knowledge and skillset.
+Welcome to my first blog post! 
 
-## Features
+As part of my journey into systems administration and DevOps, I have set up a small network/data center at home. This setup serves as a practical learning environment where I can experiment with various technologies and concepts. In this post, I will walk through the components of my home network and explain how they are interconnected. I have also created a diagram using Draw.IO to visually represent the setup.
 
-### Key Features
+I have wanted to create a diagram of my network for a while, and after learning the basics of draw.io it was surprisingly easy, albeit a bit time consuming. Overall I am quite pleased with how it turned out. You can see it posted above.
 
-- **User Authentication**: Secure login and registration system using JWT tokens.
-- **Task Management**: Efficient management of tasks with sorting, filtering, and assignment functionalities.
-- **Integration**: Integration with external APIs for real-time data updates and notifications.
-- **Responsive Design**: Responsive UI ensuring optimal user experience across devices.
+## Components of My Lab
 
-### Additional Features
+### 1. Router
+Until recently I ran my own router in OPNSense but had issues that led me to wanting something a bit more polished. I ended up getting the Unifi Cloud Gateway Ultra, which has 1 POE Port for my AP, and a 2.5GB port on WAN. I am quite happy with the UCG Ultra, it offers great features at a good price with stellar performance.
 
-- **Analytics Dashboard**: Visualize data trends and insights with interactive charts and graphs.
-- **Customizable Settings**: User preferences and settings customization for enhanced usability.
-- **Collaboration Tools**: Real-time collaboration features for team projects.
+### 2. Switch
+Connected to the router is a MikroTik 24 Port managed switch, which allows for network management and segmentation. The switch boasts 2x 10GB SFP ports which I use to directly connect my servers to the network.
 
-## Technology Stack
+### 3. Servers
+I have a couple of servers running different operating systems and services:
+- **Servy**: Running Unraid, this hosts 32TB of files, media, documents, and various archives of things I've downloaded over the years. I also use this as a backup for all my devices on the network and hosting some web applications. It is accessible from all devices on the network.
 
-### Languages and Frameworks
+- **TinyTitan**: Running Proxmox, a tiny but mighty Intel NUC that runs anything and everything I want to experiment with in Proxmox. It also serves as the Salt-Master for the network.
 
-- **Frontend**: React.js, TypeScript, Tailwind CSS
-- **Backend**: Node.js, Express.js, MongoDB
-- **APIs**: RESTful APIs for communication between frontend and backend.
+### 4. Raspberry Pi Cluster
+Practically, not that useful, but good practice and a lot of fun.
 
-### Tools and Libraries
+Consisting of 6 Raspberry Pi 4's in a 2U rackmount device, it is ideal for learning and experimenting with distributed computing. I use my Raspberry Pi cluster to practice Kubernetes, Docker Swarm and other clustering methods, deploying and managing containerized applications, and understanding concepts like load balancing, fault tolerance, and cluster management.
 
-- **State Management**: Redux for managing complex application states.
-- **UI Components**: Material-UI for consistent and responsive UI design.
-- **Database**: MongoDB for flexible and scalable data storage.
-- **Deployment**: Docker for containerization and AWS for cloud deployment.
+### 5. Monitoring and Automation
+I use SaltStack on my devices to automate deployment and provisioning of new VM's, make changes to existing machines, or generally make changes. It keeps things nice and readable and easily repeatable. The best way of documenting changes it by putting your commands in a Salt State! 
+Basically all I'm saying is, SaltStack is great. 
 
-## Architecture
+I use Wazuh for Endpoint Monitoring and general Security Detection. My Github Repo [here](https://github.com/aden-webster/wazuh_agent) includes a Salt State used for installing and configuring Wazuh Server, as well as installing the agent on client machines.
 
-### System Architecture
+Prometheus is running on most of my devices for easy graphing and metrics in Grafana.
 
-- **Frontend Service**: React.js components for the user interface.
-- **Backend Service**: Node.js server handling API requests and business logic.
-- **Database Service**: MongoDB database for storing and managing application data.
+Lastly, I have LibreNMS polling SNMP data from my network devices that provides longterm statistics and interesting data.
 
-### Design Patterns
+## Conclusion
 
-- **MVC Pattern**: Separation of concerns with models, views, and controllers.
-- **Middleware**: Authentication middleware for secure API endpoints.
-- **Component-Based Architecture**: Reusable and maintainable UI components.
+Setting up this home network/data center has been an invaluable learning experience. It has allowed me to get hands-on with various networking and server management tasks, in a realistic but safe environment. I look forward to sharing more about the specific configurations, challenges, and successes I encounter along the way. Stay tuned for more updates and detailed tutorials!
 
-## Additional Resources
+Feel free to reach out if you have any questions or suggestions. Happy learning!
 
-- **GitHub Repository**: Explore the code and contribute to the project on [GitHub](https://github.com/Thomas-Zabalo/astro-template).
-- **Documentation**: Detailed documentation on project setup, usage instructions, and API endpoints.
+---
+
+*Note: The diagram above is a simplified representation. Actual configurations may vary.*

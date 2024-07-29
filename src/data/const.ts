@@ -1,6 +1,5 @@
-export const SITE_TITLE: string = "Eclipse Astro Template";
-export const SITE_DESCRIPTION: string = "Explore the Eclipse Astro Template, a versatile theme crafted with Astro.js and Tailwind CSS, ideal for blogs and portfolios.";
-export const X_ACCOUNT: string = "@zab_thomas";
+export const SITE_TITLE: string = "Portfolio Site";
+export const SITE_DESCRIPTION: string = "Aden Webster's Personal blog to showcase developer skills and share knowledge on homelab/server/programming things.";
 
 export type Image = {
     src: string;
@@ -33,9 +32,9 @@ export type SiteConfig = {
 };
 
 const siteConfig: SiteConfig = {
-    title: 'Eclipse',
-    subtitle: 'Minimal Astro.js theme',
-    description: 'Explore the Eclipse Astro Template, a versatile theme crafted with Astro.js and Tailwind CSS, ideal for blogs and portfolios.',
+    title: 'A-Webster Portfolio',
+    subtitle: 'Homelab, servers, IT stuff',
+    description: 'Personal blog to showcase developer skills and share knowledge on homelab/server/programming things.',
     image: {
         src: '/ogp.png',
         alt: 'Eclipse - Astro.js and Tailwind CSS theme'
@@ -56,10 +55,6 @@ const siteConfig: SiteConfig = {
     ],
     footerNavLinks: [
         {
-            text: 'Markdown style',
-            href: '/markdown'
-        },
-        {
             text: 'Contact',
             href: '/contact'
         },
@@ -67,17 +62,13 @@ const siteConfig: SiteConfig = {
             text: 'Terms',
             href: '/terms'
         },
-        {
-            text: 'Download theme',
-            href: 'https://github.com/Thomas-Zabalo/astro-template'
-        }
     ],
     socialLinks: [
        
     ],
     hero: {
-        title: 'Showcasing My Work: A Journey in Web Development',
-        text: "Hello, I'm Emily Johnson, a passionate web developer driven by creativity and a love for crafting exceptional digital experiences. My journey in web development is marked by a deep curiosity for cutting-edge technologies and a commitment to delivering innovative solutions. I thrive in dynamic environments where I merge creativity with technical expertise to build impactful websites and applications. With a sharp eye for detail and a dedication to user-centric design, I aim to enhance user experiences through intuitive interfaces and robust backend solutions.",
+        title: 'Howdy Hey!',
+        text: "Hello! My name is Aden. I'm currently working in customer support with a part time job in systems administration. I have a passion for technology and a keen interest in systems administration, and I am on a journey to bigger and greater things. This website is a chronicle of my learning experiences, projects, and insights as I delve deeper into the world of systems administration and DevOps.",
         image: {
             src: '/hero.jpg',
             alt: 'A person sitting at a desk in front of a computer at work',
