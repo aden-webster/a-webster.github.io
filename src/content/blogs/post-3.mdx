@@ -1,0 +1,38 @@
+---
+title: "It's always DNS"
+author: 
+  name: "Aden"
+  img: "/avatar.jpg"
+  alt: "Avatar image"
+date: "2024-08-09"
+description: "Pondering the widely known adage It's Always DNS."
+image:
+  src: "/blog-2.jpg"
+  alt: "Docker Image"
+---
+
+import MarkdownAuthor from "../../components/MarkdownAuthor.astro";
+import MarkdownImages from "../../components/MarkdownImages.astro";
+export const {author, date, image} = frontmatter
+
+# Ramblings on DNS
+
+<MarkdownAuthor img={author.img} author={author.name} date={date} />
+
+<MarkdownImages src={image.src} alt={image.alt} />
+
+I currently work for No-IP, one of the original and largest Dynamic DNS providers in the world (since 1999!). I've learned a ton about DNS, reading [RFC's](https://www.rfc-editor.org/rfc/rfc1035.txt) for fun, and helping users with mostly basic inquiries on why their "domain doesn't work". 
+
+One of the most valuable things I've learned over the years is how much most tech workers *don't* know about DNS. 
+
+I'm sure you've heard the saying; **"It's always DNS."**
+
+## The Problem
+
+I'm sure you've heard the saying. **"It's always DNS."**
+
+I've learned a lot about DNS working at No-IP. After working with many sysadmins, systems architects, network security engineers, cloud professionals, etc. in a customer service role, it has surprised me how little most people in the Developer/Systems world know about DNS.
+
+It turns out a lot of 
+
+A core part of what No-IP does relies on its Dynamic Update Clients. This software, 

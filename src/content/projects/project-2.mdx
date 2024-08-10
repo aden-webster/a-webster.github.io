@@ -1,0 +1,40 @@
+---
+title: "My 1st published Docker Image"
+author: 
+    name: "Aden W."
+    img: "/avatar.jpg"
+    alt: "Avatar image"
+date: "2024-08-07"
+description: "My first widely used public software"
+image:
+  src: "/post-2.jpg"
+  alt: "Docker Image"
+---
+
+import MarkdownAuthor from "../../components/MarkdownAuthor.astro";
+import MarkdownImages from "../../components/MarkdownImages.astro";
+export const {author, date, image} = frontmatter
+
+# The Art of Dockerizing and Publishing an Existing Application
+
+<MarkdownAuthor img={author.img} author={author.name} date={date} />
+
+<MarkdownImages src={image.src} alt={image.alt} />
+
+## Introduction
+
+Since many people have residential internet with a dynamic IP address, if you're hosting a Minecraft Server at home and want your friends to connect to it, you want to ensure your domain is pointing to the right IP address.
+
+At No-IP, we specialize in Dynamic DNS. Basically the user will run a program on their network that will ensure their domain name (say, example.com) is always pointing to the right place (IP Address).
+
+This is where our Dynamic Update Clients (DUC) come in. This is a piece of software that runs in the background, querying your IP address periodically. This program simply ensures that, if your Public IP address changes, your Minecraft Server will still be accessible, because example.com still points to the correct (newly issued) IP address.
+
+## Where I come In...
+
+No-IP offers several update clients (DUC) for various platforms, but we did not yet have one that was Docker native. That's where I came in. I was offered the opportunity to port our newly created [Linux DUC](https://www.noip.com/download?page=linux) to a Docker Image that we could upload to Github and DockerHub.
+
+## Getting started
+
+I had used Docker here and there for years, but never written a full fledged Dockerfile before. Perusing Github for industry standard examples helped a lot, and I was able to cobble up something that would run the Linux DUC inside of a Docker Container. You can see the code on No-IP's Public Github Page **[here](https://github.com/noipcom/linux-update-client-docker)**
+
+With thousands of downloads, I am very proud to have worked on this, and eagerly await my next project where I can showcase what I learned and am exposed to more challenges.

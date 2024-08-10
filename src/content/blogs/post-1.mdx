@@ -8,7 +8,7 @@ date: "2024-07-26"
 description: "Quick overview of Saltstack"
 image:
   src: "/blog-1.jpg"
-  alt: "AI Blog Image"
+  alt: "AI Salt Image"
 ---
 
 import MarkdownAuthor from "../../components/MarkdownAuthor.astro";
@@ -22,11 +22,11 @@ export const {author, date, image} = frontmatter
 <MarkdownImages src={image.src} alt={image.alt} />
 
 
-I am a big advocate of [SaltStack](https://saltproject.io/index.html). I first started using it a couple of years ago when I was introduced to it at No-IP. After learning how it was worked, I deployed it across my entire home network and have used it on everything ever since. 
+I am a big advocate of [SaltStack](https://saltproject.io/index.html). I first started using it a couple of years ago when I was introduced to it at my workplace. After learning how it worked I deployed it across my entire home network and have used it on everything ever since. 
 
 SaltStack is a powerful configuration management and orchestration tool that I have grown to appreciate for its flexibility and efficiency. It allows you to automate the deployment and management of infrastructure, ensuring consistency and reducing manual effort.
 
-I've published a few Salt States on my GitHub.
+I've published a few Salt States on my GitHub. They are mostly simple Salt States that will install and run programs such as LibreNMS.
 
 [LibreNMS](https://github.com/aden-webster/librenms)
 
@@ -38,7 +38,9 @@ I've published a few Salt States on my GitHub.
 
 I am particularly fond of SaltStack because of its ease of use and scalability. Its declarative language, YAML, makes writing configuration states straightforward and readable.
 
-Additionally, SaltStack's event-driven architecture and support for both push and pull models provide the flexibility needed to manage complex environments effectively. It being written in Python makes it very easily extensible, with [tons](https://github.com/vmware-archive/salt-contrib) of Salt Modules existing for third party applications available on GitHub. 
+In addition to being passive (Deploy X state to install this program) SaltStack can handle events as they happen and supports both sending and receiving instructions, making it versatile enough to manage complicated setups easily.
+
+It being written in Python makes it very easily extensible, with [tons](https://github.com/vmware-archive/salt-contrib) of Salt Modules existing for third party applications available on GitHub. 
 
 ## How It Works
 
@@ -76,6 +78,10 @@ I really like this compared to Ansible or Puppet because Salt simply ensures the
 
 To use your new Salt State, you would run the following: `salt my-nas state.apply install_tree` 
 
-With *my-nas* being the name of the Salt Minion you want to use, and *state.apply* being the Salt function that... applys states :)
+With *my-nas* being the name of the Salt Minion you want to use, and *state.apply* being the Salt function that... applies states :)
 
 Notice the file extension is dropped. Salt interprets the file reading only the filename. 
+
+### Outro
+
+This is a super basic introduction to Saltstack. If you are curious to learn more I would highly recommend checking out the [Salt Documentation](https://docs.saltproject.io/en/latest/contents.html), it is really quite good. 
